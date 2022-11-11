@@ -1,7 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 web/node_modules
-web/.next
+web/build
+web/.env.development
+web/.env.production
 
 contract/node_modules
 contract/artifacts
@@ -9,8 +11,7 @@ contract/cache
 contract/.env
 
 node_modules
-.next
-
+build
 
 # dependencies
 /node_modules
@@ -19,9 +20,6 @@ node_modules
 
 # testing
 /coverage
-
-# production
-/build
 
 # misc
 .DS_Store

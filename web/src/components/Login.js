@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
+import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import {
   tokenIsClaimed,
@@ -14,12 +14,13 @@ export default function Login() {
   const [tokenAvatar, setTokenAvatar] = useState(false);
   const [tokenClaimed, setTokenClaimed] = useState(0);
   const [loading, setLoading] = useState(true);
-  const { active, account } = useWeb3React();
+  const { active, account, error } = useWeb3React();
 
   const OWNER_ADDRESS = process.env.REACT_APP_OWNER_ACCOUNT;
   const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
 
   let imgAvatar = null;
+  let imgErrorNetwork = null;
   let imgNoWhiteList = null;
   let imgMintAvailable = null;
 
@@ -49,7 +50,19 @@ export default function Login() {
     }
   }, [account, active]);
 
-  imgAvatar = active && tokenAvatar && active && (
+  imgErrorNetwork = error && (
+    <div
+      key='2'
+      className='text-zinc-600 font-semibold p-2 leading-tight flex flex-col justify-center items-center mx-auto border border-solid border-neutral-400'
+      style={{ width: "100px", height: "100px", caretcolor: "transparent" }}
+    >
+      {error instanceof UnsupportedChainIdError
+        ? `Connect to ${process.env.REACT_APP_CHAIN_NETWORK} network`
+        : `You need to install metamask wallet`}
+    </div>
+  );
+
+  imgAvatar = active && tokenAvatar && (
     <div key='1' className='mx-auto'>
       <img
         className='mx-auto mb-4'
@@ -92,7 +105,7 @@ export default function Login() {
           <BeatLoader color='#909090' loading={loading} size={5} />
         </div>
       ) : (
-        [imgAvatar, imgNoWhiteList, imgMintAvailable]
+        [imgErrorNetwork, imgAvatar, imgNoWhiteList, imgMintAvailable]
       )}
     </div>
   );

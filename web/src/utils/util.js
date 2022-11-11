@@ -24,7 +24,7 @@ export const popupConfirmation = (status, hash, tokenId) => {
 
 export const popupImage = (picture) => {
   Swal.fire({
-    imageUrl: `${URL_IMAGE}/tokens/${picture}.png`,
+    imageUrl: `${URL_IMAGE}/tokens/${picture}.jpg`,
     imageWidth: 409,
     imageHeight: 409,
     showCloseButton: false,
@@ -37,8 +37,8 @@ export const popupImage = (picture) => {
 };
 
 export const popupForm = () => {
-  const id = 0;
-  const to = 0;
+  let id = 0;
+  let to = 0;
   Swal.fire({
     title: "Transfer token",
     html: `
@@ -71,7 +71,7 @@ export const popupForm = () => {
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
-        await mintTokenTransfer(to.value, OWNER_ADDRESS, id.value)
+        await mintTokenTransfer(to, OWNER_ADDRESS, id)
           .then((result) => {
             Swal.fire({
               icon: result.success ? "success" : "error",

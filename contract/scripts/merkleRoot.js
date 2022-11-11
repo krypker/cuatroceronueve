@@ -1,5 +1,3 @@
-// SUSTITUTO setWhitelistMerkleRoot ya que no contamos con BDD
-
 require("dotenv").config();
 const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
@@ -11,6 +9,7 @@ const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(API_URL);
+
 const contract = require("../artifacts/contracts/Mint409.sol/Mint409.json");
 const nftContract = new web3.eth.Contract(contract.abi, CONTRACT_ADDRESS);
 

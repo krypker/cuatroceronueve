@@ -3,7 +3,7 @@ const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
 const axios = require("axios");
 
-const API_URL = process.env.GOERLI_API_URL;
+const API_URL = process.env.NETWORK_API_URL;
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;

@@ -1,5 +1,6 @@
 import React from "react";
 import useMetaMask from "../utils/metamask";
+import { useWeb3React } from "@web3-react/core";
 import Login from "./Login";
 import { ENSName } from "react-ens-name";
 

@@ -16,7 +16,7 @@ export default function MintCard({
   return (
     <div className='h-full border-0 border-gray-100 border-opacity-60 overflow-hidden'>
       <div className='pt-2 pb-1 flex items-center text-center justify-between px-1'>
-        <span className='tracking-normal lg:text-md text-sm title-font font-normal text-gray-500 mb-0 text-center'>
+        <span className='tracking-normal text-md title-font font-normal text-gray-500 mb-0 text-center'>
           {String(`${identificador}`).padStart(3, "0")}
         </span>
         <div className='flex items-center text-center justify-center'>
@@ -26,7 +26,7 @@ export default function MintCard({
               canMint || contract || !available || !whitelist || minting
                 ? "hidden"
                 : "" +
-                  "text-gray-500 inline-flex items-center lg:mb-0 cursor-pointer lg:text-md text-md"
+                  "text-gray-500 inline-flex items-center lg:mb-0 cursor-pointer text-md"
             }
           >
             mint

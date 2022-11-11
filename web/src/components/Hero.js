@@ -7,9 +7,9 @@ export default function Title(props) {
         <h2 className='mx-6 my-2 font-sans lg:text-3xl text-2xl text-gray-600 font-bold leading-none tracking-normal pb-4 md:mx-auto'>
           {props.header}
         </h2>
-        <p className='text-md text-gray-500 lg:text-md mb-2 md:px-10 sm:px-20'>
+        <div className='text-md text-gray-500 lg:text-md mb-2 md:px-10 sm:px-20'>
           {props.message}
-        </p>
+        </div>
       </div>
     </div>
   );

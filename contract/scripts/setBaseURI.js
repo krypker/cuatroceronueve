@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const API_URL = process.env.GOERLI_API_URL;
+const API_URL = process.env.NETWORK_API_URL;
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 

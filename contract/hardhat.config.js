@@ -1,13 +1,7 @@
 require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
-require("@nomiclabs/hardhat-etherscan");
-const {
-  MAINNET_API_URL,
-  GOERLI_API_URL,
-  GANACHE_API_URL,
-  PRIVATE_KEY,
-  ETHERSCAN_API_KEY,
-} = process.env;
+
+const { MAINNET_API_URL, GOERLI_API_URL, PRIVATE_KEY } = process.env;
 
 task("accounts", "Prints the list of accounts", async () => {
   const accounts = await ethers.getSigners();
@@ -22,9 +16,6 @@ module.exports = {
   defaultNetwork: "goerli",
   networks: {
     hardhat: {},
-    ganache: {
-      url: GANACHE_API_URL,
-    },
     mainnet: {
       url: MAINNET_API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
@@ -35,8 +26,5 @@ module.exports = {
       accounts: [`0x${PRIVATE_KEY}`],
       gasPrice: 55000000000,
     },
-  },
-  etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
   },
 };

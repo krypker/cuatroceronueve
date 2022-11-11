@@ -28,12 +28,12 @@ export default function MintGallery() {
 
   const onMintWhitelist = async (tokenId) => {
     setTokenMinting(tokenId);
-    const { success, blockHash, status } = await mintWhitelist(
+    const { success, blockHash } = await mintWhitelist(
       account,
       whitelistProof,
       tokenId
     );
-    console.log(status);
+    
     popupConfirmation(success, blockHash, tokenId);
     setWhitelistMintStatus(success);
     setTokenMinting(0);

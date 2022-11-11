@@ -11,7 +11,7 @@ export default function MintCard({
   canMint,
   whitelist,
   contract,
-  action,
+  onMintWhitelist,
 }) {
   return (
     <div className='h-full border-0 border-gray-100 border-opacity-60 overflow-hidden'>
@@ -21,7 +21,7 @@ export default function MintCard({
         </span>
         <div className='flex items-center text-center justify-center'>
           <button
-            onClick={() => action(`${identificador}`)}
+            onClick={() => onMintWhitelist(`${identificador}`)}
             className={
               canMint || contract || !available || !whitelist || minting
                 ? "hidden"

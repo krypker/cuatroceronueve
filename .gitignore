@@ -2,8 +2,7 @@
 
 web/node_modules
 web/build
-web/.env.development
-web/.env.production
+web/.env.*
 
 contract/node_modules
 contract/artifacts
@@ -24,8 +23,10 @@ build
 # misc
 .DS_Store
 .env.local
+.env.development
 .env.development.local
 .env.test.local
+.env.production
 .env.production.local
 
 npm-debug.log*

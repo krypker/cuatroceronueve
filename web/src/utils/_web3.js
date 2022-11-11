@@ -65,9 +65,7 @@ export const mintWhitelist = async (account, proof, tokenId) => {
       return {
         success: true,
         blockHash: result.blockHash,
-        status:
-          `Check out your transaction on Etherscan: https://etherscan.io/tx/` +
-          result.blockHash,
+        status: `Transaction succesful` + result.blockHash,
       };
     })
     .catch((err) => {
@@ -90,14 +88,14 @@ export const mintTokenTransfer = async (to, from, tokenId) => {
     .then((result) => {
       return {
         success: true,
-        blockhash: result.blockHash,
+        blockHash: result.blockHash,
         status: `Transaction succesful` + result.blockHash,
       };
     })
     .catch((err) => {
       return {
         success: false,
-        blockhash: err,
+        blockHash: null,
         status: "Transaction has been reverted by the EVM.",
       };
     })

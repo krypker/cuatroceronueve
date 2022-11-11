@@ -1,76 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useWeb3React } from "@web3-react/core";
-import {
-  mintWhitelist,
-  tokenIsClaimed,
-  getVerifyMerkleTree,
-} from "../utils/_web3";
-import {
-  checkIsMerkleTreeValidJson,
-  joinDataArray,
-  popupConfirmation,
-} from "../utils/util";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import images from "./images.js";
 import MintCard from "./MintCard";
 
-export default function MintGallery() {
-  const { active, account } = useWeb3React();
-  const [whitelistValid, setWhitelistValid] = useState(false);
-  const [whitelistMintStatus, setWhitelistMintStatus] = useState();
+export default function MintGallery({
+  onMintWhitelist,
+  tokenMinted,
+  displayTokens,
+  tokenMinting,
+  tokenClaimed,
+  whitelistValid,
+}) {
   const [checkActive, setCheckActive] = useState([1]);
-  const [whitelistProof, setWhitelistProof] = useState([]);
-  const [displayTokens, setDisplayTokens] = useState([]);
-  const [tokenMinted, setTokenMinted] = useState(0);
-  const [tokenClaimed, setTokenClaimed] = useState(0);
-  const [tokenMinting, setTokenMinting] = useState(0);
-
-  const onMintWhitelist = async (tokenId) => {
-    setTokenMinting(tokenId);
-    const { success, blockHash } = await mintWhitelist(
-      account,
-      whitelistProof,
-      tokenId
-    );
-    
-    popupConfirmation(success, blockHash, tokenId);
-    setWhitelistMintStatus(success);
-    setTokenMinting(0);
-  };
-
-  useEffect(() => {
-    if (!active || !account) {
-      setWhitelistValid(false);
-      return;
-    }
-
-    async function chackValidMerkleTree() {
-      const { proof } = await checkIsMerkleTreeValidJson(account);
-      setWhitelistProof(proof);
-
-      const resultClaimed = await tokenIsClaimed(account);
-      setTokenClaimed(resultClaimed);
-
-      const verify = await getVerifyMerkleTree(proof, account);
-      setWhitelistValid(verify);
-    }
-    if (account) {
-      chackValidMerkleTree();
-    }
-  }, [account, active]);
-
-  useEffect(() => {
-    setWhitelistMintStatus(false);
-    async function getDataArray() {
-      const { arrayTokens, totalMinted } = await joinDataArray(tokenMinting);
-
-      setDisplayTokens(arrayTokens == null ? [] : arrayTokens);
-      setTokenMinted(totalMinted);
-    }
-
-    getDataArray();
-  }, [whitelistMintStatus, tokenClaimed, tokenMinting]);
 
   return (
     <div className='pt-8 py-44'>
@@ -139,15 +81,85 @@ export default function MintGallery() {
               picture={item.image}
               key={item.token_id}
               available={item.available}
-              minting={tokenMinting}
               owner={item.owner}
               contract={item.contract}
+              minting={tokenMinting}
               canMint={tokenClaimed}
               whitelist={whitelistValid}
-              action={onMintWhitelist}
+              onMintWhitelist={onMintWhitelist}
             />
           ))}
       </div>
     </div>
   );
 }
+
+/*
+import { useWeb3React } from "@web3-react/core";
+import {
+  mintWhitelist,
+  tokenIsClaimed,
+  getVerifyMerkleTree,
+} from "../utils/_web3";
+import {
+  checkIsMerkleTreeValidJson,
+  joinDataArray,
+  popupConfirmation,
+} from "../utils/util";
+
+/*
+  const { active, account } = useWeb3React();
+  const [whitelistValid, setWhitelistValid] = useState(false);
+  const [whitelistMintStatus, setWhitelistMintStatus] = useState();  
+  const [whitelistProof, setWhitelistProof] = useState([]);
+  const [displayTokens, setDisplayTokens] = useState([]);
+  const [tokenMinted, setTokenMinted] = useState(0);
+  const [tokenClaimed, setTokenClaimed] = useState(0);
+  const [tokenMinting, setTokenMinting] = useState(0);  
+  
+  const onMintWhitelist = async (tokenId) => {
+    setTokenMinting(tokenId);
+    const { success, blockHash } = await mintWhitelist(
+      account,
+      whitelistProof,
+      tokenId
+    );
+
+    popupConfirmation(success, blockHash, tokenId);
+    setWhitelistMintStatus(success);
+    setTokenMinting(0);
+  };  
+
+  useEffect(() => {
+    if (!active || !account) {
+      setWhitelistValid(false);
+      return;
+    }
+
+    async function chackValidMerkleTree() {
+      const { proof } = await checkIsMerkleTreeValidJson(account);
+      setWhitelistProof(proof);
+
+      const resultClaimed = await tokenIsClaimed(account);
+      setTokenClaimed(resultClaimed);
+
+      const verify = await getVerifyMerkleTree(proof, account);
+      setWhitelistValid(verify);
+    }
+    if (account) {
+      chackValidMerkleTree();
+    }
+  }, [account, active]);  
+
+  useEffect(() => {
+    setWhitelistMintStatus(false);
+    async function getDataArray() {
+      const { arrayTokens, totalMinted } = await joinDataArray(tokenMinting);
+
+      setDisplayTokens(arrayTokens == null ? [] : arrayTokens);
+      setTokenMinted(totalMinted);
+    }
+
+    getDataArray();
+  }, [whitelistMintStatus, tokenClaimed, tokenMinting]);
+  */

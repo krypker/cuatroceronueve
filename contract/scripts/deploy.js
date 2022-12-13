@@ -5,6 +5,8 @@ async function main() {
     "https://nftstorage.link/ipfs/bafybeiaucks4657whvg6tlysvwriaibmi6th5jizux3l4qddp7v6vw6w64/"
   );
   console.log("Contract deployed to address:", mint409.address);
+
+  mint409.setRoyalties(0, mint409.address, 500);
 }
 
 main()

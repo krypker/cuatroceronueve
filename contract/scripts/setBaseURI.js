@@ -50,6 +50,7 @@ async function setBaseURI(baseURI) {
     });
 }
 
-const uri =
-  "https://gateway.pinata.cloud/ipfs/QmakNUgFuauffT4xKm9qBaTuQv5jutQW4bzNtWn6QPcLSG/";
-setBaseURI(uri);
+
+const uriIPFS =
+  "https://nftstorage.link/ipfs/bafybeiaucks4657whvg6tlysvwriaibmi6th5jizux3l4qddp7v6vw6w64/";
+setBaseURI(uriIPFS);

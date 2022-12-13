@@ -12,7 +12,7 @@ task("accounts", "Prints the list of accounts", async () => {
 });
 
 module.exports = {
-  solidity: "0.8.1",
+  solidity: "0.8.13",
   defaultNetwork: "goerli",
   networks: {
     hardhat: {},

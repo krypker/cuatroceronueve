@@ -5,7 +5,7 @@ const NFT_ADDRESS = process.env.REACT_APP_NFT_ADDRESS;
 const contractABI = require("../data/mint409.json");
 
 const webQuery = new Web3(
-  new Web3.providers.HttpProvider(`${process.env.REACT_APP_PROVIDER_INFURA}`)
+  new Web3.providers.HttpProvider(`${process.env.REACT_APP_PROVIDER}`)
 );
 const web3 = new Web3(Web3.givenProvider);
 
